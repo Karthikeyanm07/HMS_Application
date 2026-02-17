@@ -13,7 +13,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
-public class SecrityConfig {
+public class SecurityConfig {
 
     @Autowired
     private JwtFilter jwtFilter;
@@ -25,6 +25,7 @@ public class SecrityConfig {
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/api/auth/**").permitAll()
+                .requestMatchers(org.springframework.http.HttpMethod.POST, "/api/users").permitAll() // Allow registration
                 .requestMatchers("/api/doctors/**").hasRole("ADMIN")
                 .requestMatchers("/api/patients/**").hasAnyRole("ADMIN", "DOCTOR")
                 .anyRequest().authenticated()

@@ -18,8 +18,8 @@ import jakarta.persistence.UniqueConstraint;
     uniqueConstraints = {
         @UniqueConstraint(columnNames = {
             "doctor_id",
-            "appointmentDate",
-            "appointmentTime"
+            "appointment_date",
+            "appointment_time"
         })
     }
 )
@@ -30,7 +30,10 @@ public Appointment(){}
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long appointmentId;
 
+    @jakarta.persistence.Column(name = "appointment_date")
     private LocalDate appointmentDate;
+
+    @jakarta.persistence.Column(name = "appointment_time")
     private LocalTime appointmentTime;
 
     private String status; // BOOKED, CANCELLED, COMPLETED

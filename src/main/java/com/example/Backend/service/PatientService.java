@@ -22,7 +22,7 @@ public class PatientService {
     public Patient addPatient(Long userId, Patient patient) {
 
         User user = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new com.example.Backend.exception.ResourceNotFoundException("User not found with id: " + userId));
 
         patient.setUser(user);
         return patientRepository.save(patient);
@@ -34,7 +34,7 @@ public class PatientService {
 
     public Patient getPatientById(Long id) {
         return patientRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Patient not found"));
+                .orElseThrow(() -> new com.example.Backend.exception.ResourceNotFoundException("Patient not found with id: " + id));
     }
 }
 

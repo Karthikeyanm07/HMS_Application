@@ -22,7 +22,7 @@ import jakarta.servlet.http.HttpServletResponse;
 public class JwtFilter extends OncePerRequestFilter {
 
     @Autowired
-    private JWTUtill jwtUtil;
+    private JWTUtil jwtUtil;
 
     @Autowired
     private UserRepository userRepository;

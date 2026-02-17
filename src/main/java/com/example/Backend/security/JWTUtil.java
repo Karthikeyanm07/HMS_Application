@@ -10,9 +10,9 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 
 @Component
-public class JWTUtill {
+public class JWTUtil {
 
-    private final String SECRET_KEY = "hospital_secret_key";
+    private final String SECRET_KEY = "hospital_management_system_secure_secret_key_2026";
 
     public String generateToken(String username, String role) {
         return Jwts.builder()

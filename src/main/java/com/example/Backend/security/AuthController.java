@@ -21,7 +21,7 @@ public class AuthController {
     private UserRepository userRepository;
 
     @Autowired
-    private JWTUtill jwtUtil;
+    private JWTUtil jwtUtil;
 
     @Autowired
     private PasswordEncoder passwordEncoder;

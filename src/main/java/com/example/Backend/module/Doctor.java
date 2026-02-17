@@ -11,7 +11,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "doctors")
 public class Doctor {
-Doctor(){}
+    public Doctor(){}
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long doctorId;

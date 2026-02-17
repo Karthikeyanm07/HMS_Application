@@ -19,7 +19,7 @@ public class BillService {
     public Bill generateBill(Long appointmentId, double amount) {
 
         Appointment appointment = appointmentRepository.findById(appointmentId)
-                .orElseThrow(() -> new RuntimeException("Appointment not found"));
+                .orElseThrow(() -> new com.example.Backend.exception.ResourceNotFoundException("Appointment not found with id: " + appointmentId));
 
         Bill bill = new Bill();
         bill.setAppointment(appointment);

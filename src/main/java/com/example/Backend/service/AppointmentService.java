@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.Backend.exception.ResourceNotFoundException;
 import com.example.Backend.module.Appointment;
 import com.example.Backend.module.Doctor;
 import com.example.Backend.module.Patient;
@@ -33,18 +34,19 @@ public class AppointmentService {
             LocalTime time
     ) {
 
+
         Patient patient = patientRepository.findById(patientId)
-                .orElseThrow(() -> new RuntimeException("Patient not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Patient not found with id: " + patientId));
 
         Doctor doctor = doctorRepository.findById(doctorId)
-                .orElseThrow(() -> new RuntimeException("Doctor not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Doctor not found with id: " + doctorId));
 
         boolean alreadyBooked =
                 appointmentRepository.existsByDoctorAndAppointmentDateAndAppointmentTime(
                         doctor, date, time);
 
         if (alreadyBooked) {
-            throw new RuntimeException("Doctor already booked for this slot");
+            throw new RuntimeException("Doctor already booked for this slot"); // Keep generic or specific for conflict
         }
 
         Appointment appointment = new Appointment();

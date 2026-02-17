@@ -26,15 +26,15 @@ public class AppointmentController {
     public ResponseEntity<Appointment> bookAppointment(
             @RequestParam Long patientId,
             @RequestParam Long doctorId,
-            @RequestParam String date,
-            @RequestParam String time
+            @RequestParam @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE) LocalDate date,
+            @RequestParam @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.TIME) LocalTime time
     ) {
 
         Appointment appointment = appointmentService.bookAppointment(
                 patientId,
                 doctorId,
-                LocalDate.parse(date),
-                LocalTime.parse(time)
+                date,
+                time
         );
 
         return ResponseEntity.ok(appointment);

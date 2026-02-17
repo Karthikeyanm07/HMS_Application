@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "payments")
 public class Payment {
-	Payment(){}
+    public Payment(){}
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
